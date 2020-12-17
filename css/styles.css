@@ -44,3 +44,7 @@ body {
     border-bottom: 1px solid #ddd;
     padding: 10px;
 }
+
+.myaccordion .collapsed { /* Changing color of collapsed header from blue to black */
+   color: black;
+}
