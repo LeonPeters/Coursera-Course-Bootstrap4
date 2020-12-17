@@ -48,3 +48,18 @@ body {
 .myaccordion .collapsed { /* Changing color of collapsed header from blue to black */
    color: black;
 }
+
+.carousel {
+    background: #6b86aa;
+}
+
+.carousel-item {
+    height: 300px;
+}
+
+.carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height:300px;
+}
