@@ -240,7 +240,15 @@
                         <a class="carousel-control-next" href="#mycarousel" role="button" data-slide="next">
                             <span class="carousel-control-next-icon"></span>
                         </a>
-                        
+                        <!-- Carousel Button using JQuery -->
+                        <div class="btn-group" id="carouselButton">
+                            <button class="btn btn-danger btn-sm" id="carousel-pause">
+                                <span class="fa fa-pause"></span>
+                            </button>
+                            <button class="btn btn-danger btn-sm" id="carousel-play">
+                                <span class="fa fa-play"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -350,7 +358,19 @@
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
+    
+    <!-- JavaScript written in JQuery syntax:  -->
+    <script>
+        $(document).ready(function() {
+            $('#mycarousel').carousel({ interval: 2000}) // sets interval of carousel to 2000ms
+            $('#carousel-pause').click(function() { //if element with ID carousel-pause is clicked
+                $('#mycarousel').carousel('pause');  //then pause the whole carousel (with id #mycarousel)
+            });
+            $('#carousel-play').click(function(){  
+                $('#mycarousel').carousel('cycle'); 
+            });    
+        });
+    </script>
 </body>
 
 </html>
