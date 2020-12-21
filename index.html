@@ -8,10 +8,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- Bootstrap CSS -->
+    <!-- the line below specifies to usemin package that these are the css files that need to be combined together, concatenated, and minified into main.css -->
+    <!-- (its the syntax that the usemin package uses to specify) -->
+    
+    <!-- build:css css/main.css -->     
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     <link rel="stylesheet" href="css/styles.css">
+    <!-- endbuild -->
     
     <title>Ristorante Con Fusion</title>
 </head>
@@ -351,11 +356,14 @@
     </footer>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <!-- These are links to javascript file (to not have a bunch of JQuery at the bottom of the HTML document)  -->
+    
+    <!-- build:js js/main.js -->
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- Link to javascript file (to not have a bunch of JQuery at the bottom of the HTML document)  -->
     <script src="js/scripts.js"></script>
+    <!-- endbuild -->
     
 </body>
 
