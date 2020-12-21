@@ -31,7 +31,7 @@
                     <li class="nav-item"><a class="nav-link" href="./contactus.html"><span class="fa fa-address-card fa-lg"></span> Contact</a></li>
                 </ul>
                 <span class="navbar-text">
-                    <a data-toggle="modal" data-target="#loginModal">
+                    <a id="loginButton">
                         <span class="fa fa-sign-in"></span> Login
                     </a>
                 </span>
@@ -45,7 +45,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Login</h4>
                      <!-- Button to close modal -->
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="btn close" data-dismiss="modal">
                         &times;
                     </button>
                 </div>
@@ -84,7 +84,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Reserve Table</h4>
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="btn close" data-dismiss="modal">
                         &times;
                     </button>
                 </div>
@@ -189,7 +189,7 @@
                 </div>
                 <div class="col-12 col-sm-3 align-self-center">
                     <!-- Links to modal above -->
-                    <a class="btn btn-block nav-link btn-warning" data-toggle="modal" data-target="#reserveModal">
+                    <a id="reserveButton" class="btn btn-block nav-link btn-warning">
                         Reserve Table
                     </a>
                 </div>
@@ -349,34 +349,13 @@
            </div>
         </div>
     </footer>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-    <!-- JavaScript written in JQuery syntax:  -->
-    <script>
-        $(document).ready(function() {
-            $('#mycarousel').carousel({ interval: 2000}) // sets interval of carousel to 2000ms
-            $("#carouselButton").click(function(){ //if element with ID carousel-pause is clicked
-                
-                //for the carouselButton in mycarousel, if there's an 
-                //element with the span tag. Then check if it has class 
-                // 'fa-pause'. (if the span tag has the fa-pause class, 
-                //we know this button is currently acting as the pause button)
-                if ($("#carouselButton").children("span").hasClass('fa-pause')){ 
-                    $("#mycarousel").carousel('pause');  //then pause the whole carousel (with id #mycarousel)
-                    $("#carouselButton").children("span").removeClass('fa-pause');
-                    $("#carouselButton").children("span").addClass('fa-play');
-                }
-                else if ($("#carouselButton").children("span").hasClass('fa-play')){ 
-                    $("#mycarousel").carousel('cycle');  //then pause the whole carousel (with id #mycarousel)
-                    $("#carouselButton").children("span").removeClass('fa-play');
-                    $("#carouselButton").children("span").addClass('fa-pause');
-                }  
-            });
-        });
-    </script>
+    <!-- Link to javascript file (to not have a bunch of JQuery at the bottom of the HTML document)  -->
+    <script src="js/scripts.js"></script>
     
 </body>
 
