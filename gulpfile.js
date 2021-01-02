@@ -2,15 +2,24 @@
 
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+    del = require('del'),
+    imagemin = require('gulp-imagemin'),
+    uglify = require('gulp-uglify'),
+    usemin = require('gulp-usemin'),
+    rev = require('gulp-rev'),
+    cleanCss = require('gulp-clean-css'),
+    flatmap = require('gulp-flatmap'),
+    htmlmin = require('gulp-htmlmin');
     
-
+// piping from source folder through a function (sass conversion) into the destination folder
 gulp.task('sass', function () {
   return gulp.src('./css/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./css'));
 });
 
+//watch task is already integrated into gulp
 gulp.task('sass:watch', function () {
   gulp.watch('./css/*.scss', ['sass']);
 });
@@ -34,3 +43,39 @@ gulp.task('browser-sync', function () {
 // Default task
 gulp.task('default', gulp.series('browser-sync', 'sass:watch'));
 
+// Deletes distribution folder
+gulp.task('clean', function() {
+   return del(['dist']);
+});
+
+gulp.task('copyfonts',
+  async function() {
+     gulp.src('./node_modules/font-awesome/fonts/**/*.{ttf,woff,eof,svg}*')
+     .pipe(gulp.dest('./dist/fonts'));
+});
+
+//imagemin task (minimise image files)
+gulp.task('imagemin', function() {
+   return gulp.src('img/*.{png,jpg,gif}')
+     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
+     .pipe(gulp.dest('dist/img'));
+ });
+
+ //usemin task (combines, concatenates, minifies and uglifies html, css and javascript files in the distribution folder)
+ gulp.task('usemin', function() {
+    return gulp.src('./*.html')
+    .pipe(flatmap(function(stream, files) {
+         return stream
+         .pipe(usemin({
+            css: [rev()],
+            html: [ function() { return htmlmin({collapseWhitespace: true})}],
+            js: [uglify(), rev()],
+            inlinejs: [uglify()],
+            inlinecss: [cleanCss(), 'concat']
+         }))
+    }))
+    .pipe(gulp.dest('dist/'));
+ });
+
+//build task
+gulp.task('build', gulp.series('clean', gulp.parallel('copyfonts', 'imagemin', 'usemin')));
